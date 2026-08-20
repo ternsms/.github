@@ -127,15 +127,15 @@ flowchart LR
 <!-- org-stats:start -->
 ## 贡献看板
 
-<sub>每日 00:00（北京时间）自动更新 · 2026-08-20 23:56 CST</sub>
+<sub>每日 00:00（北京时间）自动更新 · 2026-08-21 00:01 CST</sub>
 
 <p align="center">
-  <img src="./stats/leaderboard.svg?t=20260820" alt="Tern contributors" width="900" />
+  <img src="./stats/leaderboard.svg?t=20260821" alt="Tern contributors" width="900" />
 </p>
 <p align="center">
-  <img src="./stats/commits.svg?t=20260820" alt="Tern commit activity" width="900" />
+  <img src="./stats/commits.svg?t=20260821" alt="Tern commit activity" width="900" />
 </p>
 <p align="center">
-  <img src="./stats/genome.svg?t=20260820" alt="Tern code composition" width="900" />
+  <img src="./stats/genome.svg?t=20260821" alt="Tern code composition" width="900" />
 </p>
 <!-- org-stats:end -->
