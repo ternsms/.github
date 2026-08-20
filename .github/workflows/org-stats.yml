@@ -1,0 +1,75 @@
+name: Daily org stats
+
+on:
+  schedule:
+    - cron: "0 16 * * *" # 00:00 Asia/Shanghai
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/update-org-stats.mjs"
+      - "scripts/update-org-stats.test.mjs"
+      - ".github/workflows/org-stats.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: org-stats
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      REQUIRED_REPOS: ternsms/sms,ternsms/.github
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ORG_STATS_TOKEN || github.token }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify org stats token
+        env:
+          GH_TOKEN: ${{ secrets.ORG_STATS_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::ORG_STATS_TOKEN is required for private repository stats"
+            exit 1
+          fi
+          test "$(gh api repos/ternsms/sms --jq '.permissions.pull')" = "true" || {
+            echo "::error::ORG_STATS_TOKEN needs metadata:read and contents:read on ternsms/sms"
+            exit 1
+          }
+          test "$(gh api repos/ternsms/.github --jq '.permissions.push')" = "true" || {
+            echo "::error::ORG_STATS_TOKEN needs contents:write on ternsms/.github"
+            exit 1
+          }
+
+      - name: Generate contribution board
+        env:
+          GH_TOKEN: ${{ secrets.ORG_STATS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ORG_STATS_TOKEN }}
+          ORG_LOGIN: ternsms
+        run: node scripts/update-org-stats.mjs
+
+      - name: Verify generated assets
+        run: node --test scripts/update-org-stats.test.mjs
+
+      - name: Commit updated stats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/README.md profile/stats
+          if git diff --cached --quiet; then
+            echo "No stats changes"
+            exit 0
+          fi
+          git commit -m "chore(stats): daily org contribution board"
+          git push
