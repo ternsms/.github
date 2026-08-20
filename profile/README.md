@@ -123,3 +123,19 @@ flowchart LR
 🚧 **PRD 0.1 草案 · 待评审（M0）** — 2026-08-20
 
 <sub>安全基线：密钥零硬编码、凭证 AES-256-GCM 落库、SSRF 防线、内部端点强鉴权、后台强制 2FA、GDPR 数据主体权利支持（明细 CH TTL 1 年）。</sub>
+
+<!-- org-stats:start -->
+## 贡献看板
+
+<sub>每日 00:00（北京时间）自动更新 · 2026-08-20 23:46 CST</sub>
+
+<p align="center">
+  <img src="./stats/leaderboard.svg?t=20260820" alt="Tern contributors" width="900" />
+</p>
+<p align="center">
+  <img src="./stats/commits.svg?t=20260820" alt="Tern commit activity" width="900" />
+</p>
+<p align="center">
+  <img src="./stats/genome.svg?t=20260820" alt="Tern code composition" width="900" />
+</p>
+<!-- org-stats:end -->

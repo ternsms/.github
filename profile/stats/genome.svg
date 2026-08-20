@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900" height="332" viewBox="0 0 900 332" role="img" aria-label="Code composition">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .border, .rule { stroke: #d0d7de; }
+      .title, .ink, .num { fill: #1f2328; }
+      .muted, .tiny { fill: #656d76; }
+      .title { font: 600 18px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; }
+      .ink { font: 600 13px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; }
+      .num { font: 600 13px ui-monospace, SFMono-Regular, Consolas, monospace; }
+      .muted { font: 400 11px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; }
+      .tiny { font: 400 10px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; }
+      .level-0 { fill: #ebedf0; }
+      .level-1 { fill: #9be9a8; }
+      .level-2 { fill: #40c463; }
+      .level-3 { fill: #30a14e; }
+      .level-4 { fill: #216e39; }
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #0d1117; }
+        .border, .rule { stroke: #30363d; }
+        .title, .ink, .num { fill: #e6edf3; }
+        .muted, .tiny { fill: #8b949e; }
+        .level-0 { fill: #161b22; }
+        .level-1 { fill: #0e4429; }
+        .level-2 { fill: #006d32; }
+        .level-3 { fill: #26a641; }
+        .level-4 { fill: #39d353; }
+      }
+    </style>
+  </defs>
+  <rect class="bg border" x="0.5" y="0.5" width="899" height="331" rx="6" fill="none"/>
+<text class="title" x="28" y="36">Code composition</text>
+  <text class="muted" x="872" y="29" text-anchor="end">158.9 KB · 166 files</text>
+  <text class="tiny" x="872" y="46" text-anchor="end">2026-08-20 23:46 CST</text>
+    <line class="rule" x1="28" y1="58" x2="872" y2="58"/>
+    <clipPath id="language-bar"><rect x="28" y="76" width="844" height="12" rx="6"/></clipPath>
+    <g clip-path="url(#language-bar)"><rect x="28" y="76" width="680.1996374473838" height="12" fill="#00ADD8"/><rect x="708.1996374473838" y="76" width="90.53804037238456" height="12" fill="#3178C6"/><rect x="798.7376778197684" y="76" width="37.61138046517344" height="12" fill="#427819"/><rect x="836.3490582849417" y="76" width="22.75768580821581" height="12" fill="#F1E05A"/><rect x="859.1067440931575" y="76" width="6.887467354902142" height="12" fill="#563D7C"/><rect x="865.9942114480597" y="76" width="6.005788551940271" height="12" fill="#384D54"/></g>
+
+    <circle cx="34" cy="124" r="4" fill="#00ADD8"/>
+    <text class="ink" x="48" y="128">Go</text>
+    <text class="muted" x="872" y="128" text-anchor="end">80.6% · 128.1 KB</text>
+    <line class="rule" x1="28" y1="145" x2="872" y2="145"/>
+    <circle cx="34" cy="158" r="4" fill="#3178C6"/>
+    <text class="ink" x="48" y="162">TypeScript</text>
+    <text class="muted" x="872" y="162" text-anchor="end">10.7% · 17.0 KB</text>
+    <line class="rule" x1="28" y1="179" x2="872" y2="179"/>
+    <circle cx="34" cy="192" r="4" fill="#427819"/>
+    <text class="ink" x="48" y="196">Makefile</text>
+    <text class="muted" x="872" y="196" text-anchor="end">4.5% · 7.1 KB</text>
+    <line class="rule" x1="28" y1="213" x2="872" y2="213"/>
+    <circle cx="34" cy="226" r="4" fill="#F1E05A"/>
+    <text class="ink" x="48" y="230">JavaScript</text>
+    <text class="muted" x="872" y="230" text-anchor="end">2.7% · 4.3 KB</text>
+    <line class="rule" x1="28" y1="247" x2="872" y2="247"/>
+    <circle cx="34" cy="260" r="4" fill="#563D7C"/>
+    <text class="ink" x="48" y="264">CSS</text>
+    <text class="muted" x="872" y="264" text-anchor="end">0.8% · 1.3 KB</text>
+    <line class="rule" x1="28" y1="281" x2="872" y2="281"/>
+    <circle cx="34" cy="294" r="4" fill="#384D54"/>
+    <text class="ink" x="48" y="298">Dockerfile</text>
+    <text class="muted" x="872" y="298" text-anchor="end">0.7% · 1.1 KB</text>
+    <line class="rule" x1="28" y1="315" x2="872" y2="315"/>
+</svg>
