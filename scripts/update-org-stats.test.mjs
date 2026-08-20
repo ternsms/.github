@@ -55,6 +55,9 @@ test("gitLog scans only the requested default branch", () => {
     git("commit", "-m", "topic commit");
 
     assert.equal(gitLog(repo, "main").length, 1);
+    git("update-ref", "refs/remotes/origin/main", "refs/heads/main");
+    git("branch", "-D", "main");
+    assert.equal(gitLog(repo, "main").length, 1);
   } finally {
     rmSync(repo, { recursive: true, force: true });
   }
@@ -81,6 +84,7 @@ test("stats include every repository required by the workflow", () => {
   for (const repo of required) {
     assert.ok(stats.repos.includes(repo), `required repository missing from stats: ${repo}`);
   }
+  assert.ok(stats.contributors.some(({ repos }) => repos.includes(".github")), "profile repository commits missing from stats");
 });
 
 test("generated SVG geometry stays inside each viewBox", () => {

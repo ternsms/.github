@@ -205,6 +205,18 @@ function cloneUrl(fullName, token) {
 }
 
 function gitLog(dir, ref) {
+  let target = ref;
+  if (ref) {
+    for (const candidate of [`refs/heads/${ref}`, `refs/remotes/origin/${ref}`]) {
+      try {
+        sh("git", ["-C", dir, "rev-parse", "--verify", "--quiet", candidate]);
+        target = candidate;
+        break;
+      } catch {
+        // Try the next ref shape used by checkout or bare clones.
+      }
+    }
+  }
   const args = [
     "-C",
     dir,
@@ -213,7 +225,7 @@ function gitLog(dir, ref) {
     "--format=%aN%x09%aE%x09%ad%x09%H%x09%s",
     "--date=format:%Y-%m-%d",
   ];
-  if (ref) args.push(ref);
+  if (target) args.push(target);
   try {
     const out = sh("git", args);
     if (!out) return [];
