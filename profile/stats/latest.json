@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-21 16:17 CST",
+  "generatedAt": "2026-08-22 00:23 CST",
   "org": "ternsms",
   "repos": [
-    "ternsms/sms",
-    "ternsms/.github"
+    "ternsms/.github",
+    "ternsms/sms"
   ],
   "totalCommits": 121,
   "contributors": [
@@ -50,9 +50,9 @@
     }
   ],
   "languages": {
+    "JavaScript": 122242,
     "Go": 936252,
     "TypeScript": 533266,
-    "JavaScript": 122242,
     "Makefile": 8240,
     "Shell": 5560,
     "Handlebars": 1842,
