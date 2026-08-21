@@ -5,7 +5,7 @@ import test from "node:test";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { gitLog, renderGenome } from "./update-org-stats.mjs";
+import { gitLog, renderGenome, renderLeaderboard, textWidth } from "./update-org-stats.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const STATS_DIR = join(ROOT, "profile", "stats");
@@ -36,6 +36,43 @@ function geometryOutsideViewBox(svg) {
   }
 
   return points.filter(([x, y]) => x < 0 || x > width || y < 0 || y > height);
+}
+
+const CLASS_FONT = {
+  title: { size: 18 },
+  ink: { size: 13 },
+  num: { size: 13, mono: true },
+  muted: { size: 11 },
+  tiny: { size: 10 },
+};
+
+// Text has no width attribute, so the earlier geometry check could not see a
+// left-anchored label running off the card. Estimate the advance instead.
+function textOutsideViewBox(svg) {
+  const viewBox = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
+  const width = Number(viewBox[1]);
+  const overflow = [];
+
+  for (const tag of svg.matchAll(/<text\b([^>]*)>([^<]*)<\/text>/g)) {
+    const [, attrs, raw] = tag;
+    const content = raw
+      .replaceAll("&lt;", "<")
+      .replaceAll("&gt;", ">")
+      .replaceAll("&quot;", '"')
+      .replaceAll("&apos;", "'")
+      .replaceAll("&amp;", "&");
+    if (!content.trim()) continue;
+    const font = CLASS_FONT[attrs.match(/class="([^"]+)"/)?.[1]?.split(/\s+/)[0]] || { size: 10 };
+    const inline = attrs.match(/font:\s*\d+\s+([\d.]+)px/);
+    const size = inline ? Number(inline[1]) : font.size;
+    const anchor = attrs.match(/text-anchor="([^"]+)"/)?.[1] || "start";
+    const x = Number(attrs.match(/\bx="([\d.-]+)"/)?.[1] || 0);
+    const w = textWidth(content, size, font.mono);
+    const x0 = anchor === "end" ? x - w : anchor === "middle" ? x - w / 2 : x;
+    if (x0 < 0 || x0 + w > width) overflow.push({ text: content, x0: Math.round(x0), x1: Math.round(x0 + w) });
+  }
+
+  return overflow;
 }
 
 test("gitLog scans only the requested default branch", () => {
@@ -93,6 +130,39 @@ test("generated SVG geometry stays inside each viewBox", () => {
     const outside = geometryOutsideViewBox(svg);
     assert.equal(outside.length, 0, `${name} geometry outside viewBox: ${JSON.stringify(outside.slice(0, 8))}`);
   }
+});
+
+test("generated SVG labels stay inside each viewBox", () => {
+  for (const name of ["leaderboard.svg", "commits.svg", "genome.svg"]) {
+    const svg = readFileSync(join(STATS_DIR, name), "utf8");
+    const clipped = textOutsideViewBox(svg);
+    assert.equal(clipped.length, 0, `${name} clips label(s): ${JSON.stringify(clipped.slice(0, 8))}`);
+  }
+});
+
+test("leaderboard keeps long names clear of the count column", () => {
+  const svg = renderLeaderboard(
+    [
+      {
+        login: "an-extremely-long-github-login".repeat(6),
+        commits: 1234567,
+        repos: Array.from({ length: 20 }, (_, i) => `repository-number-${i}`),
+        lastDate: "2026-08-21",
+      },
+    ],
+    "test",
+    2,
+  );
+
+  assert.equal((svg.match(/\u2026/g) || []).length, 2, "both the login and the repo list should be ellipsised");
+  assert.deepEqual(textOutsideViewBox(svg), []);
+  assert.deepEqual(geometryOutsideViewBox(svg), []);
+
+  const countLeft = 827 - textWidth("1,234,567", 13, true);
+  const name = svg.match(/class="ink" x="104"[^>]*>([^<]+)</)[1];
+  const meta = svg.match(/class="tiny" x="104"[^>]*>([^<]+)</)[1];
+  assert.ok(104 + textWidth(name, 13) < countLeft, "login overlaps the count column");
+  assert.ok(104 + textWidth(meta, 10) < countLeft, "repo list overlaps the count column");
 });
 
 test("generated SVG assets do not contain trailing whitespace", () => {

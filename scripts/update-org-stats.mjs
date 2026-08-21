@@ -38,6 +38,8 @@ const NAME_ALIASES = {
   null: "backspace135",
 };
 
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 const LANG_COLORS = {
   Go: "#00ADD8",
   TypeScript: "#3178C6",
@@ -288,6 +290,46 @@ function heatLevel(count, max) {
   return 1;
 }
 
+// Shared card geometry: every renderer keeps its ink inside [PAD, RIGHT].
+const CARD_W = 900;
+const PAD = 28;
+const RIGHT = CARD_W - PAD;
+
+// Advance widths in em, good enough to keep right-anchored labels inside the card.
+const NARROW = new Set([..."ijltfrI.,:;'`|!()[]-"]);
+const WIDE = new Set([..."mwMW@%"]);
+
+function charEm(ch) {
+  if (ch === " ") return 0.28;
+  if (ch === "\u00b7") return 0.35;
+  if (ch.codePointAt(0) >= 0x2e80) return 1;
+  if (NARROW.has(ch)) return 0.32;
+  if (WIDE.has(ch)) return 0.85;
+  if (ch >= "0" && ch <= "9") return 0.56;
+  if (ch >= "A" && ch <= "Z") return 0.68;
+  if (ch >= "a" && ch <= "z") return 0.52;
+  return 0.55;
+}
+
+function textWidth(text, size, mono = false) {
+  const str = String(text);
+  if (mono) return str.length * 0.6 * size;
+  let em = 0;
+  for (const ch of str) em += charEm(ch);
+  return em * size;
+}
+
+function clampText(text, maxWidth, size, mono = false) {
+  const str = String(text);
+  if (textWidth(str, size, mono) <= maxWidth) return str;
+  const chars = [...str];
+  while (chars.length > 1) {
+    chars.pop();
+    if (textWidth(`${chars.join("")}\u2026`, size, mono) <= maxWidth) break;
+  }
+  return `${chars.join("")}\u2026`;
+}
+
 function wrapSvg(width, height, body, title) {
   const cleanBody = body.replace(/[ \t]+$/gm, "");
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -329,50 +371,64 @@ ${cleanBody.trim()}
 
 function header(title, stamp, detail) {
   return `
-  <text class="title" x="28" y="36">${xml(title)}</text>
-  <text class="muted" x="872" y="29" text-anchor="end">${xml(detail)}</text>
-  <text class="tiny" x="872" y="46" text-anchor="end">${xml(stamp)}</text>`;
+  <text class="title" x="${PAD}" y="36">${xml(title)}</text>
+  <text class="muted" x="${RIGHT}" y="29" text-anchor="end">${xml(detail)}</text>
+  <text class="tiny" x="${RIGHT}" y="46" text-anchor="end">${xml(stamp)}</text>`;
 }
 
 function renderLeaderboard(contributors, stamp, repoCount) {
   const rows = contributors.slice(0, 12);
-  const width = 900;
+  const width = CARD_W;
   const top = 66;
   const rowH = 56;
-  const height = Math.max(150, top + rows.length * rowH + 14);
+  const height = Math.max(150, top + rows.length * rowH);
+  // "commits" is a fixed unit label pinned to the right margin; the count is
+  // right-anchored just left of it so both columns line up on every row.
+  const unit = "commits";
+  const unitW = Math.ceil(textWidth(unit, 10));
+  const countX = RIGHT - unitW - 6;
+  const nameX = 104;
 
   const body = [
-    header("Contributors", stamp, `${rows.length} people · ${repoCount} repositories`),
-    `<line class="rule" x1="28" y1="58" x2="872" y2="58"/>`,
+    header("Contributors", stamp, `${contributors.length} people \u00b7 ${repoCount} repositories`),
+    `<line class="rule" x1="${PAD}" y1="58" x2="${RIGHT}" y2="58"/>`,
   ];
 
   if (!rows.length) {
-    body.push(`<text class="muted" x="28" y="106">No human commits yet.</text>`);
+    body.push(`<text class="muted" x="${PAD}" y="106">No human commits yet.</text>`);
     return wrapSvg(width, height, body.join("\n"), "Contributors");
   }
 
+  const clips = rows
+    .map((_, i) => `<clipPath id="av${i}"><circle cx="74" cy="${top + i * rowH + 26}" r="16"/></clipPath>`)
+    .join("");
+  body.push(`  <defs>${clips}</defs>`);
+
   rows.forEach((c, i) => {
     const y = top + i * rowH;
-    const clip = `av${i}`;
     const avatar = c.avatarData
-      ? `<image href="${c.avatarData}" x="58" y="${y + 10}" width="32" height="32" clip-path="url(#${clip})"/>`
+      ? `<image href="${c.avatarData}" x="58" y="${y + 10}" width="32" height="32" clip-path="url(#av${i})"/>`
       : `<circle cx="74" cy="${y + 26}" r="16" fill="#2da44e"/><text x="74" y="${y + 30}" text-anchor="middle" fill="#ffffff" style="font:600 10px sans-serif">${xml((c.login || "?").slice(0, 2))}</text>`;
+    const count = formatInt(c.commits);
+    const meta = `${c.repos.join(" \u00b7 ") || "\u2014"} \u00b7 last ${c.lastDate || "\u2014"}`;
+    // Keep the name block clear of the count column on this row.
+    const nameMax = countX - Math.ceil(textWidth(count, 13, true)) - 12 - nameX;
     body.push(`
-    <defs><clipPath id="${clip}"><circle cx="74" cy="${y + 26}" r="16"/></clipPath></defs>
     <text class="tiny" x="36" y="${y + 30}" text-anchor="middle">${i + 1}</text>
     ${avatar}
-    <text class="ink" x="104" y="${y + 24}">${xml(c.login)}</text>
-    <text class="tiny" x="104" y="${y + 41}">${xml(c.repos.join(" · ") || "—")} · last ${xml(c.lastDate || "—")}</text>
-    <text class="num" x="856" y="${y + 29}" text-anchor="end">${formatInt(c.commits)}</text>
-    <text class="tiny" x="872" y="${y + 29}">commits</text>
-    <line class="rule" x1="28" y1="${y + rowH - 1}" x2="872" y2="${y + rowH - 1}"/>`);
+    <text class="ink" x="${nameX}" y="${y + 24}">${xml(clampText(c.login, nameMax, 13))}</text>
+    <text class="tiny" x="${nameX}" y="${y + 41}">${xml(clampText(meta, nameMax, 10))}</text>
+    <text class="num" x="${countX}" y="${y + 29}" text-anchor="end">${count}</text>
+    <text class="tiny" x="${RIGHT}" y="${y + 29}" text-anchor="end">${unit}</text>${
+      i === rows.length - 1 ? "" : `\n    <line class="rule" x1="${PAD}" y1="${y + rowH - 1}" x2="${RIGHT}" y2="${y + rowH - 1}"/>`
+    }`);
   });
 
   return wrapSvg(width, height, body.join("\n"), "Contributors");
 }
 
 function renderCommits({ byDay, stamp, total, activeDays }) {
-  const width = 900;
+  const width = CARD_W;
   const weeks = 53;
   const cell = 12;
   const gap = 3;
@@ -399,7 +455,7 @@ function renderCommits({ byDay, stamp, total, activeDays }) {
       const month = date.slice(0, 7);
       if (!monthSeen.has(month) && date.slice(8) <= "07") {
         monthSeen.add(month);
-        monthLabels.push(`<text class="tiny" x="${x}" y="${heatY - 8}">${xml(date.slice(5, 7))}</text>`);
+        monthLabels.push(`<text class="tiny" x="${x}" y="${heatY - 8}">${MONTHS[Number(date.slice(5, 7)) - 1]}</text>`);
       }
     }
   }
@@ -409,58 +465,67 @@ function renderCommits({ byDay, stamp, total, activeDays }) {
     .map((d, i) => `<text class="tiny" x="${heatX - 10}" y="${heatY + d * (cell + gap) + 11}" text-anchor="end">${weekdays[i]}</text>`)
     .join("");
 
+  // Anchor the whole scale to the right margin so "More" cannot spill past it.
+  const swatches = 5;
+  const moreW = Math.ceil(textWidth("More", 10));
+  const legendX = RIGHT - moreW - 6 - (swatches * (cell + gap) - gap);
   const legend = [0, 1, 2, 3, 4]
-    .map((i, idx) => `<rect class="level-${i}" x="${760 + idx * 17}" y="211" width="12" height="12" rx="2"/>`)
+    .map((i, idx) => `<rect class="level-${i}" x="${legendX + idx * (cell + gap)}" y="211" width="${cell}" height="${cell}" rx="2"/>`)
     .join("");
 
   const body = `
     ${header("Commits", stamp, `${formatInt(total)} commits · ${activeDays} active days`)}
-    <line class="rule" x1="28" y1="58" x2="872" y2="58"/>
+    <line class="rule" x1="${PAD}" y1="58" x2="${RIGHT}" y2="58"/>
     ${weekdayText}
     ${monthLabels.join("\n")}
     ${cells.join("\n")}
-    <text class="tiny" x="728" y="221">Less</text>
+    <text class="tiny" x="${legendX - 6}" y="221" text-anchor="end">Less</text>
     ${legend}
-    <text class="tiny" x="852" y="221">More</text>
+    <text class="tiny" x="${RIGHT}" y="221" text-anchor="end">More</text>
   `;
   return wrapSvg(width, height, body, "Commits");
 }
 
 function renderGenome({ languages, filesByRepo, stamp, totalBytes }) {
-  const width = 900;
+  const width = CARD_W;
   const entries = Object.entries(languages)
     .map(([name, bytes]) => ({ name, bytes, color: LANG_COLORS[name] || LANG_COLORS.Other }))
     .sort((a, b) => b.bytes - a.bytes);
   const sum = entries.reduce((s, x) => s + x.bytes, 0) || 1;
   const top = 112;
   const rowH = 34;
-  const height = Math.max(190, top + entries.length * rowH + 16);
+  const height = Math.max(190, top + entries.length * rowH);
+  const barW = RIGHT - PAD;
   const fileCount = Object.values(filesByRepo).reduce((count, files) => count + files.length, 0);
-  let barX = 28;
+  let consumed = 0;
   const bar = entries
-    .map((lang) => {
-      const segmentW = (lang.bytes / sum) * 844;
-      const rect = `<rect x="${barX}" y="76" width="${segmentW}" height="12" fill="${lang.color}"/>`;
-      barX += segmentW;
-      return rect;
+    .map((lang, i) => {
+      const startX = PAD + Math.round(consumed * 100) / 100;
+      consumed += (lang.bytes / sum) * barW;
+      // Snap the final segment to the right margin so rounding never leaves a seam.
+      const endX = i === entries.length - 1 ? RIGHT : PAD + Math.round(consumed * 100) / 100;
+      return `<rect x="${startX}" y="76" width="${Math.round((endX - startX) * 100) / 100}" height="12" fill="${lang.color}"/>`;
     })
     .join("");
   const rows = entries
     .map((lang, i) => {
       const y = top + i * rowH;
       const pct = ((lang.bytes / sum) * 100).toFixed(1);
+      const measure = `${pct}% \u00b7 ${formatBytes(lang.bytes)}`;
+      const nameMax = RIGHT - Math.ceil(textWidth(measure, 11)) - 16 - 48;
       return `
     <circle cx="34" cy="${y + 12}" r="4" fill="${lang.color}"/>
-    <text class="ink" x="48" y="${y + 16}">${xml(lang.name)}</text>
-    <text class="muted" x="872" y="${y + 16}" text-anchor="end">${pct}% · ${formatBytes(lang.bytes)}</text>
-    <line class="rule" x1="28" y1="${y + rowH - 1}" x2="872" y2="${y + rowH - 1}"/>`;
+    <text class="ink" x="48" y="${y + 16}">${xml(clampText(lang.name, nameMax, 13))}</text>
+    <text class="muted" x="${RIGHT}" y="${y + 16}" text-anchor="end">${xml(measure)}</text>${
+        i === entries.length - 1 ? "" : `\n    <line class="rule" x1="${PAD}" y1="${y + rowH - 1}" x2="${RIGHT}" y2="${y + rowH - 1}"/>`
+      }`;
     })
     .join("");
 
   const body = `
-    ${header("Code composition", stamp, `${formatBytes(totalBytes)} · ${fileCount} files`)}
-    <line class="rule" x1="28" y1="58" x2="872" y2="58"/>
-    <clipPath id="language-bar"><rect x="28" y="76" width="844" height="12" rx="6"/></clipPath>
+    ${header("Code composition", stamp, `${formatBytes(totalBytes)} \u00b7 ${fileCount} files`)}
+    <line class="rule" x1="${PAD}" y1="58" x2="${RIGHT}" y2="58"/>
+    <defs><clipPath id="language-bar"><rect x="${PAD}" y="76" width="${barW}" height="12" rx="6"/></clipPath></defs>
     <g clip-path="url(#language-bar)">${bar}</g>
     ${rows}
   `;
@@ -472,7 +537,7 @@ function patchReadme(stamp, cacheBust) {
   const section = `${MARK_START}
 ## 贡献看板
 
-<sub>每日 00:00（北京时间）自动更新 · ${xml(stamp)}</sub>
+<sub>覆盖 ternsms 组织全部非归档仓库的默认分支，已剔除机器人提交与看板自身的更新 · 每日 00:00（北京时间）自动更新 · ${xml(stamp)}</sub>
 
 <p align="center">
   <img src="./stats/leaderboard.svg?t=${cacheBust}" alt="Tern contributors" width="900" />
@@ -625,4 +690,4 @@ if (process.argv[1] && resolve(process.argv[1]) === SCRIPT_PATH) {
   });
 }
 
-export { gitLog, renderGenome };
+export { gitLog, renderLeaderboard, renderCommits, renderGenome, textWidth };

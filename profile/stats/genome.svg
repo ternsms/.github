@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900" height="332" viewBox="0 0 900 332" role="img" aria-label="Code composition">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900" height="316" viewBox="0 0 900 316" role="img" aria-label="Code composition">
   <defs>
     <style>
       .bg { fill: #ffffff; }
@@ -29,13 +29,13 @@
       }
     </style>
   </defs>
-  <rect class="bg border" x="0.5" y="0.5" width="899" height="331" rx="6" fill="none"/>
+  <rect class="bg border" x="0.5" y="0.5" width="899" height="315" rx="6" fill="none"/>
 <text class="title" x="28" y="36">Code composition</text>
   <text class="muted" x="872" y="29" text-anchor="end">158.9 KB · 173 files</text>
   <text class="tiny" x="872" y="46" text-anchor="end">2026-08-21 00:06 CST</text>
     <line class="rule" x1="28" y1="58" x2="872" y2="58"/>
-    <clipPath id="language-bar"><rect x="28" y="76" width="844" height="12" rx="6"/></clipPath>
-    <g clip-path="url(#language-bar)"><rect x="28" y="76" width="680.1996374473838" height="12" fill="#00ADD8"/><rect x="708.1996374473838" y="76" width="90.53804037238456" height="12" fill="#3178C6"/><rect x="798.7376778197684" y="76" width="37.61138046517344" height="12" fill="#427819"/><rect x="836.3490582849417" y="76" width="22.75768580821581" height="12" fill="#F1E05A"/><rect x="859.1067440931575" y="76" width="6.887467354902142" height="12" fill="#563D7C"/><rect x="865.9942114480597" y="76" width="6.005788551940271" height="12" fill="#384D54"/></g>
+    <defs><clipPath id="language-bar"><rect x="28" y="76" width="844" height="12" rx="6"/></clipPath></defs>
+    <g clip-path="url(#language-bar)"><rect x="28" y="76" width="680.2" height="12" fill="#00ADD8"/><rect x="708.2" y="76" width="90.54" height="12" fill="#3178C6"/><rect x="798.74" y="76" width="37.61" height="12" fill="#427819"/><rect x="836.35" y="76" width="22.76" height="12" fill="#F1E05A"/><rect x="859.11" y="76" width="6.88" height="12" fill="#563D7C"/><rect x="865.99" y="76" width="6.01" height="12" fill="#384D54"/></g>
 
     <circle cx="34" cy="124" r="4" fill="#00ADD8"/>
     <text class="ink" x="48" y="128">Go</text>
@@ -60,5 +60,4 @@
     <circle cx="34" cy="294" r="4" fill="#384D54"/>
     <text class="ink" x="48" y="298">Dockerfile</text>
     <text class="muted" x="872" y="298" text-anchor="end">0.7% · 1.1 KB</text>
-    <line class="rule" x1="28" y1="315" x2="872" y2="315"/>
 </svg>

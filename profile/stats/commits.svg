@@ -35,18 +35,18 @@
   <text class="tiny" x="872" y="46" text-anchor="end">2026-08-21 00:06 CST</text>
     <line class="rule" x1="28" y1="58" x2="872" y2="58"/>
     <text class="tiny" x="60" y="99" text-anchor="end">Mon</text><text class="tiny" x="60" y="129" text-anchor="end">Wed</text><text class="tiny" x="60" y="159" text-anchor="end">Fri</text>
-    <text class="tiny" x="100" y="80">09</text>
-<text class="tiny" x="160" y="80">10</text>
-<text class="tiny" x="220" y="80">11</text>
-<text class="tiny" x="295" y="80">12</text>
-<text class="tiny" x="355" y="80">01</text>
-<text class="tiny" x="415" y="80">02</text>
-<text class="tiny" x="475" y="80">03</text>
-<text class="tiny" x="550" y="80">04</text>
-<text class="tiny" x="610" y="80">05</text>
-<text class="tiny" x="685" y="80">06</text>
-<text class="tiny" x="745" y="80">07</text>
-<text class="tiny" x="805" y="80">08</text>
+    <text class="tiny" x="100" y="80">Sep</text>
+<text class="tiny" x="160" y="80">Oct</text>
+<text class="tiny" x="220" y="80">Nov</text>
+<text class="tiny" x="295" y="80">Dec</text>
+<text class="tiny" x="355" y="80">Jan</text>
+<text class="tiny" x="415" y="80">Feb</text>
+<text class="tiny" x="475" y="80">Mar</text>
+<text class="tiny" x="550" y="80">Apr</text>
+<text class="tiny" x="610" y="80">May</text>
+<text class="tiny" x="685" y="80">Jun</text>
+<text class="tiny" x="745" y="80">Jul</text>
+<text class="tiny" x="805" y="80">Aug</text>
     <rect class="level-0" x="70" y="88" width="12" height="12" rx="2"><title>2025-08-18: 0</title></rect>
 <rect class="level-0" x="70" y="103" width="12" height="12" rx="2"><title>2025-08-19: 0</title></rect>
 <rect class="level-0" x="70" y="118" width="12" height="12" rx="2"><title>2025-08-20: 0</title></rect>
@@ -416,7 +416,7 @@
 <rect class="level-0" x="850" y="118" width="12" height="12" rx="2"><title>2026-08-19: 0</title></rect>
 <rect class="level-4" x="850" y="133" width="12" height="12" rx="2"><title>2026-08-20: 44</title></rect>
 <rect class="level-1" x="850" y="148" width="12" height="12" rx="2"><title>2026-08-21: 1</title></rect>
-    <text class="tiny" x="728" y="221">Less</text>
-    <rect class="level-0" x="760" y="211" width="12" height="12" rx="2"/><rect class="level-1" x="777" y="211" width="12" height="12" rx="2"/><rect class="level-2" x="794" y="211" width="12" height="12" rx="2"/><rect class="level-3" x="811" y="211" width="12" height="12" rx="2"/><rect class="level-4" x="828" y="211" width="12" height="12" rx="2"/>
-    <text class="tiny" x="852" y="221">More</text>
+    <text class="tiny" x="765" y="221" text-anchor="end">Less</text>
+    <rect class="level-0" x="771" y="211" width="12" height="12" rx="2"/><rect class="level-1" x="786" y="211" width="12" height="12" rx="2"/><rect class="level-2" x="801" y="211" width="12" height="12" rx="2"/><rect class="level-3" x="816" y="211" width="12" height="12" rx="2"/><rect class="level-4" x="831" y="211" width="12" height="12" rx="2"/>
+    <text class="tiny" x="872" y="221" text-anchor="end">More</text>
 </svg>
