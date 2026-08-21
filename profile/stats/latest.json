@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-21 00:06 CST",
+  "generatedAt": "2026-08-21 09:18 CST",
   "org": "ternsms",
   "repos": [
-    "ternsms/sms",
-    "ternsms/.github"
+    "ternsms/.github",
+    "ternsms/sms"
   ],
-  "totalCommits": 45,
+  "totalCommits": 46,
   "contributors": [
     {
       "login": "Night-stars-1",
@@ -17,12 +17,12 @@
     },
     {
       "login": "backspace135",
-      "commits": 15,
+      "commits": 16,
       "repos": [
         ".github",
         "sms"
       ],
-      "lastDate": "2026-08-20"
+      "lastDate": "2026-08-21"
     },
     {
       "login": "chenqian2",
@@ -42,10 +42,10 @@
     }
   ],
   "languages": {
+    "JavaScript": 30162,
     "Go": 131152,
     "TypeScript": 17457,
     "Makefile": 7252,
-    "JavaScript": 4388,
     "CSS": 1328,
     "Dockerfile": 1158
   }
