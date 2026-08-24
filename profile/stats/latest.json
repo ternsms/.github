@@ -1,43 +1,61 @@
 {
-  "generatedAt": "2026-08-21 00:01 CST",
+  "generatedAt": "2026-08-24 20:57 CST",
   "org": "ternsms",
   "repos": [
     "ternsms/sms",
     "ternsms/.github"
   ],
-  "totalCommits": 43,
+  "totalCommits": 160,
   "contributors": [
     {
       "login": "Night-stars-1",
-      "commits": 27,
+      "commits": 65,
       "repos": [
         "sms"
       ],
-      "lastDate": "2026-08-20"
+      "lastDate": "2026-08-24"
     },
     {
       "login": "backspace135",
-      "commits": 15,
+      "commits": 60,
       "repos": [
         ".github",
         "sms"
       ],
-      "lastDate": "2026-08-20"
+      "lastDate": "2026-08-21"
     },
     {
-      "login": "yunyanggit",
-      "commits": 1,
+      "login": "xiaoxiongxiong",
+      "commits": 26,
       "repos": [
         "sms"
       ],
-      "lastDate": "2026-08-20"
+      "lastDate": "2026-08-24"
+    },
+    {
+      "login": "yunyanggit",
+      "commits": 7,
+      "repos": [
+        "sms"
+      ],
+      "lastDate": "2026-08-24"
+    },
+    {
+      "login": "chenqian2",
+      "commits": 2,
+      "repos": [
+        ".github"
+      ],
+      "lastDate": "2026-08-21"
     }
   ],
   "languages": {
-    "Go": 131152,
-    "TypeScript": 17457,
-    "Makefile": 7252,
-    "JavaScript": 4388,
+    "Go": 1413430,
+    "TypeScript": 552302,
+    "JavaScript": 124567,
+    "Makefile": 8240,
+    "Shell": 5560,
+    "Handlebars": 1842,
     "CSS": 1328,
     "Dockerfile": 1158
   }
