@@ -31,35 +31,35 @@
   </defs>
   <rect class="bg border" x="0.5" y="0.5" width="899" height="417" rx="6" fill="none"/>
 <text class="title" x="28" y="36">Code composition</text>
-  <text class="muted" x="872" y="29" text-anchor="end">12.76 MB · 3598 files</text>
-  <text class="tiny" x="872" y="46" text-anchor="end">2026-08-30 03:03 CST</text>
+  <text class="muted" x="872" y="29" text-anchor="end">10.74 MB · 3025 files</text>
+  <text class="tiny" x="872" y="46" text-anchor="end">2026-08-31 02:58 CST</text>
     <line class="rule" x1="28" y1="58" x2="872" y2="58"/>
     <defs><clipPath id="language-bar"><rect x="28" y="76" width="844" height="12" rx="6"/></clipPath></defs>
-    <g clip-path="url(#language-bar)"><rect x="28" y="76" width="433.16" height="12" fill="#00ADD8"/><rect x="461.16" y="76" width="391.16" height="12" fill="#3178C6"/><rect x="852.32" y="76" width="12.58" height="12" fill="#F1E05A"/><rect x="864.9" y="76" width="3.46" height="12" fill="#563D7C"/><rect x="868.36" y="76" width="1.36" height="12" fill="#89E051"/><rect x="869.72" y="76" width="1.12" height="12" fill="#427819"/><rect x="870.84" y="76" width="0.57" height="12" fill="#64748B"/><rect x="871.41" y="76" width="0.42" height="12" fill="#384D54"/><rect x="871.83" y="76" width="0.17" height="12" fill="#64748B"/></g>
+    <g clip-path="url(#language-bar)"><rect x="28" y="76" width="421.24" height="12" fill="#00ADD8"/><rect x="449.24" y="76" width="399.69" height="12" fill="#3178C6"/><rect x="848.93" y="76" width="14.94" height="12" fill="#F1E05A"/><rect x="863.87" y="76" width="4.12" height="12" fill="#563D7C"/><rect x="867.99" y="76" width="1.38" height="12" fill="#89E051"/><rect x="869.37" y="76" width="1.25" height="12" fill="#427819"/><rect x="870.62" y="76" width="0.68" height="12" fill="#64748B"/><rect x="871.3" y="76" width="0.49" height="12" fill="#384D54"/><rect x="871.79" y="76" width="0.21" height="12" fill="#64748B"/></g>
 
     <circle cx="34" cy="124" r="4" fill="#00ADD8"/>
     <text class="ink" x="48" y="128">Go</text>
-    <text class="muted" x="872" y="128" text-anchor="end">51.3% · 6.55 MB</text>
+    <text class="muted" x="872" y="128" text-anchor="end">49.9% · 5.36 MB</text>
     <line class="rule" x1="28" y1="145" x2="872" y2="145"/>
     <circle cx="34" cy="158" r="4" fill="#3178C6"/>
     <text class="ink" x="48" y="162">TypeScript</text>
-    <text class="muted" x="872" y="162" text-anchor="end">46.3% · 5.91 MB</text>
+    <text class="muted" x="872" y="162" text-anchor="end">47.4% · 5.09 MB</text>
     <line class="rule" x1="28" y1="179" x2="872" y2="179"/>
     <circle cx="34" cy="192" r="4" fill="#F1E05A"/>
     <text class="ink" x="48" y="196">JavaScript</text>
-    <text class="muted" x="872" y="196" text-anchor="end">1.5% · 194.7 KB</text>
+    <text class="muted" x="872" y="196" text-anchor="end">1.8% · 194.7 KB</text>
     <line class="rule" x1="28" y1="213" x2="872" y2="213"/>
     <circle cx="34" cy="226" r="4" fill="#563D7C"/>
     <text class="ink" x="48" y="230">CSS</text>
-    <text class="muted" x="872" y="230" text-anchor="end">0.4% · 53.6 KB</text>
+    <text class="muted" x="872" y="230" text-anchor="end">0.5% · 53.6 KB</text>
     <line class="rule" x1="28" y1="247" x2="872" y2="247"/>
     <circle cx="34" cy="260" r="4" fill="#89E051"/>
     <text class="ink" x="48" y="264">Shell</text>
-    <text class="muted" x="872" y="264" text-anchor="end">0.2% · 21.1 KB</text>
+    <text class="muted" x="872" y="264" text-anchor="end">0.2% · 18.1 KB</text>
     <line class="rule" x1="28" y1="281" x2="872" y2="281"/>
     <circle cx="34" cy="294" r="4" fill="#427819"/>
     <text class="ink" x="48" y="298">Makefile</text>
-    <text class="muted" x="872" y="298" text-anchor="end">0.1% · 17.3 KB</text>
+    <text class="muted" x="872" y="298" text-anchor="end">0.1% · 16.2 KB</text>
     <line class="rule" x1="28" y1="315" x2="872" y2="315"/>
     <circle cx="34" cy="328" r="4" fill="#64748B"/>
     <text class="ink" x="48" y="332">PHP</text>
@@ -67,7 +67,7 @@
     <line class="rule" x1="28" y1="349" x2="872" y2="349"/>
     <circle cx="34" cy="362" r="4" fill="#384D54"/>
     <text class="ink" x="48" y="366">Dockerfile</text>
-    <text class="muted" x="872" y="366" text-anchor="end">0.0% · 6.4 KB</text>
+    <text class="muted" x="872" y="366" text-anchor="end">0.1% · 6.4 KB</text>
     <line class="rule" x1="28" y1="383" x2="872" y2="383"/>
     <circle cx="34" cy="396" r="4" fill="#64748B"/>
     <text class="ink" x="48" y="400">Handlebars</text>
