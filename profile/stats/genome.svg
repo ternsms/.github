@@ -31,23 +31,23 @@
   </defs>
   <rect class="bg border" x="0.5" y="0.5" width="899" height="519" rx="6" fill="none"/>
 <text class="title" x="28" y="36">Code composition</text>
-  <text class="muted" x="872" y="29" text-anchor="end">20.50 MB · 7900 files</text>
-  <text class="tiny" x="872" y="46" text-anchor="end">2026-09-05 02:44 CST</text>
+  <text class="muted" x="872" y="29" text-anchor="end">20.62 MB · 7906 files</text>
+  <text class="tiny" x="872" y="46" text-anchor="end">2026-09-06 01:50 CST</text>
     <line class="rule" x1="28" y1="58" x2="872" y2="58"/>
     <defs><clipPath id="language-bar"><rect x="28" y="76" width="844" height="12" rx="6"/></clipPath></defs>
-    <g clip-path="url(#language-bar)"><rect x="28" y="76" width="363.05" height="12" fill="#00ADD8"/><rect x="391.05" y="76" width="242.92" height="12" fill="#64748B"/><rect x="633.97" y="76" width="222.6" height="12" fill="#3178C6"/><rect x="856.57" y="76" width="10.64" height="12" fill="#F1E05A"/><rect x="867.21" y="76" width="1.37" height="12" fill="#89E051"/><rect x="868.58" y="76" width="0.96" height="12" fill="#563D7C"/><rect x="869.54" y="76" width="0.79" height="12" fill="#E34C26"/><rect x="870.33" y="76" width="0.79" height="12" fill="#427819"/><rect x="871.12" y="76" width="0.36" height="12" fill="#64748B"/><rect x="871.48" y="76" width="0.29" height="12" fill="#384D54"/><rect x="871.77" y="76" width="0.12" height="12" fill="#64748B"/><rect x="871.89" y="76" width="0.11" height="12" fill="#64748B"/></g>
+    <g clip-path="url(#language-bar)"><rect x="28" y="76" width="365.97" height="12" fill="#00ADD8"/><rect x="393.97" y="76" width="241.45" height="12" fill="#64748B"/><rect x="635.42" y="76" width="221.24" height="12" fill="#3178C6"/><rect x="856.66" y="76" width="10.58" height="12" fill="#F1E05A"/><rect x="867.24" y="76" width="1.36" height="12" fill="#89E051"/><rect x="868.6" y="76" width="0.95" height="12" fill="#563D7C"/><rect x="869.55" y="76" width="0.79" height="12" fill="#E34C26"/><rect x="870.34" y="76" width="0.78" height="12" fill="#427819"/><rect x="871.12" y="76" width="0.36" height="12" fill="#64748B"/><rect x="871.48" y="76" width="0.29" height="12" fill="#384D54"/><rect x="871.77" y="76" width="0.12" height="12" fill="#64748B"/><rect x="871.89" y="76" width="0.11" height="12" fill="#64748B"/></g>
 
     <circle cx="34" cy="124" r="4" fill="#00ADD8"/>
     <text class="ink" x="48" y="128">Go</text>
-    <text class="muted" x="872" y="128" text-anchor="end">43.0% · 8.82 MB</text>
+    <text class="muted" x="872" y="128" text-anchor="end">43.4% · 8.94 MB</text>
     <line class="rule" x1="28" y1="145" x2="872" y2="145"/>
     <circle cx="34" cy="158" r="4" fill="#64748B"/>
     <text class="ink" x="48" y="162">Vue</text>
-    <text class="muted" x="872" y="162" text-anchor="end">28.8% · 5.90 MB</text>
+    <text class="muted" x="872" y="162" text-anchor="end">28.6% · 5.90 MB</text>
     <line class="rule" x1="28" y1="179" x2="872" y2="179"/>
     <circle cx="34" cy="192" r="4" fill="#3178C6"/>
     <text class="ink" x="48" y="196">TypeScript</text>
-    <text class="muted" x="872" y="196" text-anchor="end">26.4% · 5.41 MB</text>
+    <text class="muted" x="872" y="196" text-anchor="end">26.2% · 5.41 MB</text>
     <line class="rule" x1="28" y1="213" x2="872" y2="213"/>
     <circle cx="34" cy="226" r="4" fill="#F1E05A"/>
     <text class="ink" x="48" y="230">JavaScript</text>
