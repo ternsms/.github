@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-19 02:46 CST",
+  "generatedAt": "2026-09-20 02:19 CST",
   "org": "ternsms",
   "repos": [
+    "ternsms/.github",
     "ternsms/sms",
-    "ternsms/legacy-smpp-proxy",
-    "ternsms/.github"
+    "ternsms/legacy-smpp-proxy"
   ],
   "totalCommits": 2533,
   "contributors": [
@@ -63,10 +63,10 @@
     }
   ],
   "languages": {
+    "JavaScript": 307239,
     "Go": 18416227,
     "TypeScript": 6698510,
     "Vue": 6544917,
-    "JavaScript": 307239,
     "Shell": 156342,
     "Makefile": 26941,
     "CSS": 24422,
