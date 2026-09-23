@@ -4,6 +4,21 @@
 
 ---
 
+ternsms 组织下有两条相互独立的产品线：
+
+| 产品 | 一句话 | 仓库 |
+|---|---|---|
+| **[Tern](#tern--国际-a2p-短信平台)** | 纯国际 A2P 短信平台：客户接入 → 号码清洗 → 通道路由 → 计费 → 回执与报表 | [`sms`](https://github.com/ternsms/sms) |
+| **[Tern Shadow · 影子上游](#tern-shadow--影子上游)** | 不是短信平台：对老系统扮演一家上游 SMSC，背后把消息转发给真上游的 SMPP 串联代理 | [`legacy-smpp-proxy`](https://github.com/ternsms/legacy-smpp-proxy)（将更名 `tern-shadow`） |
+
+两者代码同源（影子上游从 `sms` 拆出并大幅裁剪），但定位、部署与演进各自独立；下文分开介绍。
+
+<sub>`sms` 与 `legacy-smpp-proxy` 为私有仓库，仓库及文档链接需相应访问权限；本页为公开概览。另有 [`.github`](https://github.com/ternsms/.github) 承载本主页与每日贡献看板。</sub>
+
+---
+
+# Tern · 国际 A2P 短信平台
+
 Tern 是一个面向国际市场的 A2P 短信平台：客户经 **HTTP API、SMPP 3.4 或门户**提交短信，平台完成名单风控、通道路由、协议下发、回执归一、计费结算与统计报表的全链路。架构按**日千万级发送量**设计。
 
 **立项约束（已冻结）**
@@ -13,15 +28,7 @@ Tern 是一个面向国际市场的 A2P 短信平台：客户经 **HTTP API、SM
 - **全新 API**：不兼容老平台对外 API，无迁移包袱。
 - 内容审核与词库/模板类内容策略暂缓（名单类风控保留）。
 
-## 仓库
-
-| 仓库 | 定位 | 当前阶段 |
-|---|---|---|
-| [`sms`](https://github.com/ternsms/sms) | Tern 主仓（monorepo）：go-zero 后端 13 个服务 + 客户门户 `portal-vue` + 管理后台 `admin-vue` + 部署与 CI | **V0 出口条件于 2026-09-09 达成，推进 V1 商用验收**（[v0-plan](https://github.com/ternsms/sms/blob/main/docs/v0-plan.md)） |
-| [`legacy-smpp-proxy`](https://github.com/ternsms/legacy-smpp-proxy) | 独立的老系统接入代理：Tern 作为 SMPP 串联代理站在老系统与上游之间（smpp-gw → 透传管线 + link 短链替换 → sender），老系统零改造 | 已完成模拟 e2e 与多轮百万级压测；真实通道灰度与生产上线待验收 |
-| [`.github`](https://github.com/ternsms/.github) | 组织主页与每日贡献看板 | 看板每日自动更新 |
-
-<sub>`sms` 与 `legacy-smpp-proxy` 为私有仓库，仓库及文档链接需相应访问权限；本页为公开概览。</sub>
+**仓库**：[`sms`](https://github.com/ternsms/sms)（monorepo）——go-zero 后端 13 个服务 + 客户门户 `portal-vue` + 管理后台 `admin-vue` + 部署与 CI。**V0 出口条件于 2026-09-09 达成，推进 V1 商用验收**（[v0-plan](https://github.com/ternsms/sms/blob/main/docs/v0-plan.md)）。
 
 ## 核心主线：SMPP 中转清洗
 
@@ -108,7 +115,7 @@ flowchart LR
 
 **关键机制**：终态不可变、幂等账本、分区独占状态机 + changelog 恢复、bitmap 圈选、不可变配置快照 + 版本信号热更新、SMPP bind 池（reconcile/退避重连/窗口管理）、唯一写者原则。
 
-<sub>图示为主仓逻辑架构，省略短链、报表及回执接入细节；独立的 `legacy-smpp-proxy` 保留裁剪后的六服务与 Redis Stream 管线，不套用主仓消息架构。</sub>
+<sub>图示为主仓逻辑架构，省略短链、报表及回执接入细节。影子上游不套用此架构，见下文。</sub>
 
 ## 分期规划
 
@@ -149,10 +156,43 @@ flowchart LR
 - **SenderID**：登记、许可、轮换池与产品路由页签已合入主仓，轮换由后端执行。9/20 隔离真栈验收通过，**不代表共享服务升级或生产部署**；具体使用仍受功能配置与产品模式约束。
 - **通道管理**：列表、详情、新建、编辑、启停、删除、连接测试以及直投诊断试发、监控已接线；完整发送链试发仍属后续范围。
 - **USDT 充值**：固定收款地址（TRC20）模式已落地；链上到账先登记为客户级「待指派」，由运营指派产品钱包后幂等落账。
-- **`legacy-smpp-proxy`**：独立的六服务透传代理，含短链替换与回执返还；已完成模拟 e2e、多轮压测与背压验收，持续加固。模拟验收不等于真实通道灰度或生产上线。
 - **上线边界**：V0 完成与 V1 增量合入不等于商用发布。真实供应商码表、真实通道验证、生产容量与部署配置继续按[上线清单](https://github.com/ternsms/sms/issues/339)推进；性能指标仍按目标列示。
 
 <sub>安全基线：密钥零硬编码、凭证 AES-256-GCM 落库、SSRF 防线、内部端点强鉴权、后台强制 2FA、GDPR 数据主体权利支持（明细 CH TTL 1 年）。</sub>
+
+---
+
+# Tern Shadow · 影子上游
+
+**它不是国际短信平台。** Tern Shadow 从 `sms` 拆出，对老系统而言它就是**一家上游 SMSC**：老系统像对接普通上游一样 bind 进来提交短信，Shadow 在中间完成短链替换与归因，再把消息转发给真正的上游，并把回执原路返还给老系统。**老系统零改造**，只需新增一个上游配置。方案见 [ternsms/sms#67](https://github.com/ternsms/sms/issues/67)。
+
+**仓库**：[`legacy-smpp-proxy`](https://github.com/ternsms/legacy-smpp-proxy)（仓库内已按 `tern-shadow` 改名，GitHub 侧待更名）。
+
+```
+老系统（ESME，bind 到 Shadow 就像 bind 到一家上游）
+  → smpp-gw   SMPP 3.4 server；透传管线 ① 池准入 ② link 短链替换（link 不可用时 fail-open 原文透传）
+  → sender    上游 SMPP bind 池 / 窗口，转发给真上游 SMSC
+  ← dlr       回执归一化、终态 CAS，deliver_sm 原路回给老系统
+  · link      短链生成 / 替换 / 点击归因，对接 EdgeLink
+```
+
+**与 Tern 的区别**
+
+| | Tern | Tern Shadow |
+|---|---|---|
+| 角色 | 面向客户的短信平台 | 面向老系统的「上游」 |
+| 接入 | HTTP API + SMPP + 客户门户 | 仅老系统 SMPP bind |
+| 服务 | 13 个 go-zero 服务，zRPC + etcd | 6 个：`smpp-gw` · `link` · `sender` · `dlr` · `admin-api` · `report`，无 etcd |
+| 清洗 / 计费 / 选路 | 号码清洗、钱包账本、通道池路由 | 已删除（`account` / `wallet` / `route` / `clean` 四个 rpc 整体移除），接入账号与上游通道改由配置文件声明 |
+| 消息主干 | Redpanda | Redis Stream |
+| 前端 | 客户门户 + 管理后台 | 仅管理后台（裁剪版） |
+
+**状态**（2026-09-22）
+
+- 透传链路全链路打通，docker compose e2e 栈（假老系统 ESME → Shadow → 假上游 SMSC → 回执回老系统）三条用例通过。
+- 峰值压测：受理 **6 544 QPS @64 bind** 未见拐点；自适应并发与背压验收 **四轮 × 178 万条全部 DELIVRD、零死信**。
+- 回执按来源通道归类与分通道错误码表已合入；部署手册、使用手册（含图文 PDF）已完成。
+- 以上均为模拟 / 隔离环境验收，**不等于真实通道灰度或生产上线**。
 
 <!-- org-stats:start -->
 ## 贡献看板
