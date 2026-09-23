@@ -62,38 +62,51 @@ Tern 的核心角色是一个**带号码清洗能力的 SMPP 中转站**——�
 ## 架构
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph clients[客户侧]
     C1[HTTP API 客户程序]
     C2[SMPP 客户端]
-    C3[客户门户 Vue 3]
-    C4[管理后台 Vue 3]
+    C3[客户门户 · Vue 3]
+    C4[管理后台 · Vue 3]
   end
-  subgraph core[Tern 核心 · go-zero 微服务]
-    GW[gateway<br/>对外 HTTP API]
+  subgraph access[接入层]
+    GW[gateway<br/>HTTP API v1]
+    SG[smpp-gw<br/>SMPP 3.4 server]
     BFF[portal-api / admin-api<br/>门户与后台 BFF]
-    SG[smpp-gw<br/>客户 SMPP 接入]
-    RPC[zRPC 服务群<br/>account · wallet · clean · route · portal]
-    SN[sender ×N<br/>消费提交 topic · 协议下发]
-    DL[dlr ×N<br/>分区独占状态机 · 终态处理]
   end
-  subgraph store[消息与存储]
-    RP[(Redpanda<br/>提交 · 回执 · changelog · terminal)]
+  RPC[核心域 zRPC 服务群<br/>clean · wallet · route · account · portal]
+  MQ[[Redpanda 消息主干<br/>提交 · 回执 · changelog · terminal]]
+  subgraph worker[异步流水线 · worker ×N]
+    SN[sender<br/>上游 bind 池 · HTTP 驱动]
+    DL[dlr<br/>分区独占状态机<br/>终态 → 结算 · 明细 · 对客回执]
+  end
+  UP[上游通道<br/>SMPP · HTTP]
+  subgraph store[存储]
     PG[(PostgreSQL<br/>主数据 · 钱包账本)]
-    RD[(Redis<br/>缓存 · 钱包镜像 · 回执拉取)]
-    CH[(ClickHouse<br/>明细 · bitmap 圈选 · 日志)]
+    RD[(Redis<br/>缓存 · 钱包镜像 · 拉取流)]
+    CH[(ClickHouse<br/>明细 · bitmap · 日志)]
   end
-  UP[上游通道<br/>SMPP bind 池 · HTTP 驱动]
+
   C1 --> GW
-  C3 & C4 --> BFF
   C2 --> SG
-  GW & BFF & SG --> RPC
-  GW & BFF & SG --> RP
-  RP --> SN --> UP
-  UP --> RP
-  RP <--> DL
-  RPC --- PG & RD
-  SN & DL --- PG & RD & CH
+  C3 & C4 --> BFF
+  access -->|① 同步：清洗 · 扣费 · 选路| RPC
+  access ==>|② 受理即 produce| MQ
+  MQ ==>|③ 提交 topic| SN
+  SN ==>|④ submit_sm / HTTP| UP
+  UP -.->|⑤ 回执| SN
+  MQ -.->|⑥ 回执事件| DL
+  RPC -.- PG & RD
+  worker -.- PG & RD & CH
+
+  classDef ext fill:#f6f8fa,stroke:#8c959f,color:#24292f
+  classDef svc fill:#ddf4ff,stroke:#0969da,color:#0a3069
+  classDef mq fill:#fff8c5,stroke:#9a6700,color:#4d2d00
+  classDef db fill:#dafbe1,stroke:#1a7f37,color:#0f5323
+  class C1,C2,C3,C4,UP ext
+  class GW,SG,BFF,RPC,SN,DL svc
+  class MQ mq
+  class PG,RD,CH db
 ```
 
 | 服务 | 类型 | 职责 |
@@ -115,7 +128,7 @@ flowchart LR
 
 **关键机制**：终态不可变、幂等账本、分区独占状态机 + changelog 恢复、bitmap 圈选、不可变配置快照 + 版本信号热更新、SMPP bind 池（reconcile/退避重连/窗口管理）、唯一写者原则。
 
-<sub>图示为主仓逻辑架构，省略短链、报表及回执接入细节。影子上游不套用此架构，见下文。</sub>
+<sub>① 同步链路决定受理与否（全内存快照判定）；② 起异步：受理即写 Redpanda，sender 按通道下发，dlr 按 msg_id 分区独占推进状态并产出终态。图中省略 link 短链、report 报表与 etcd。影子上游不套用此架构，见下文。</sub>
 
 ## 分期规划
 
