@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-08 04:55 CST",
+  "generatedAt": "2026-10-09 04:57 CST",
   "org": "ternsms",
   "repos": [
-    "ternsms/.github",
     "ternsms/sms",
+    "ternsms/.github",
     "ternsms/legacy-smpp-proxy"
   ],
-  "totalCommits": 2748,
+  "totalCommits": 2749,
   "contributors": [
     {
       "login": "backspace135",
@@ -47,11 +47,11 @@
     },
     {
       "login": "yuda-bai",
-      "commits": 38,
+      "commits": 39,
       "repos": [
         "sms"
       ],
-      "lastDate": "2026-09-24"
+      "lastDate": "2026-10-08"
     },
     {
       "login": "chenqian2",
@@ -63,15 +63,15 @@
     }
   ],
   "languages": {
-    "JavaScript": 353002,
-    "Go": 24199262,
+    "Go": 24199352,
     "TypeScript": 7194873,
     "Vue": 6816992,
     "Shell": 292740,
+    "JavaScript": 353002,
     "HTML": 154613,
+    "Python": 99041,
     "Makefile": 30816,
     "CSS": 26527,
-    "Python": 16883,
     "Dockerfile": 12814,
     "PHP": 79541,
     "SCSS": 3207,
