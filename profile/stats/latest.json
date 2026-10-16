@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-10-16 03:35 CST",
+  "generatedAt": "2026-10-17 03:10 CST",
   "org": "ternsms",
   "repos": [
     "ternsms/sms",
     "ternsms/.github",
     "ternsms/legacy-smpp-proxy"
   ],
-  "totalCommits": 3026,
+  "totalCommits": 3060,
   "contributors": [
     {
       "login": "backspace135",
-      "commits": 983,
+      "commits": 989,
       "repos": [
         ".github",
         "legacy-smpp-proxy",
         "sms"
       ],
-      "lastDate": "2026-10-15"
+      "lastDate": "2026-10-16"
     },
     {
       "login": "Night-stars-1",
-      "commits": 795,
+      "commits": 796,
       "repos": [
         "legacy-smpp-proxy",
         "sms"
       ],
-      "lastDate": "2026-10-15"
+      "lastDate": "2026-10-16"
     },
     {
       "login": "xiaoxiongxiong",
@@ -38,12 +38,12 @@
     },
     {
       "login": "yunyanggit",
-      "commits": 486,
+      "commits": 513,
       "repos": [
         "legacy-smpp-proxy",
         "sms"
       ],
-      "lastDate": "2026-10-15"
+      "lastDate": "2026-10-16"
     },
     {
       "login": "yuda-bai",
@@ -63,17 +63,17 @@
     }
   ],
   "languages": {
-    "Go": 28181345,
-    "TypeScript": 8264810,
-    "Vue": 7481255,
-    "Shell": 354812,
+    "Go": 28189223,
+    "TypeScript": 8703486,
+    "Vue": 7664246,
+    "Shell": 360376,
     "Kotlin": 330361,
-    "JavaScript": 391172,
+    "JavaScript": 391804,
     "HTML": 154613,
     "Python": 124171,
-    "Makefile": 32838,
-    "CSS": 26527,
-    "Dockerfile": 12857,
+    "Makefile": 32769,
+    "CSS": 32490,
+    "Dockerfile": 13210,
     "PHP": 79541,
     "SCSS": 3207,
     "Handlebars": 2763,
