@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-04 05:23 CST",
+  "generatedAt": "2026-11-05 05:39 CST",
   "org": "ternsms",
   "repos": [
     "ternsms/sms",
@@ -7,27 +7,27 @@
     "ternsms/webclone",
     "ternsms/legacy-smpp-proxy"
   ],
-  "totalCommits": 3358,
+  "totalCommits": 3372,
   "contributors": [
     {
       "login": "backspace135",
-      "commits": 1133,
+      "commits": 1138,
       "repos": [
         ".github",
         "legacy-smpp-proxy",
         "sms",
         "webclone"
       ],
-      "lastDate": "2026-11-03"
+      "lastDate": "2026-11-04"
     },
     {
       "login": "Night-stars-1",
-      "commits": 855,
+      "commits": 860,
       "repos": [
         "legacy-smpp-proxy",
         "sms"
       ],
-      "lastDate": "2026-11-03"
+      "lastDate": "2026-11-04"
     },
     {
       "login": "xiaoxiongxiong",
@@ -49,19 +49,19 @@
     },
     {
       "login": "yuda-bai",
-      "commits": 78,
+      "commits": 80,
       "repos": [
         "sms"
       ],
-      "lastDate": "2026-11-03"
+      "lastDate": "2026-11-04"
     },
     {
       "login": "yun12370",
-      "commits": 32,
+      "commits": 34,
       "repos": [
         "sms"
       ],
-      "lastDate": "2026-11-03"
+      "lastDate": "2026-11-04"
     },
     {
       "login": "chenqian2",
@@ -73,16 +73,16 @@
     }
   ],
   "languages": {
-    "Go": 32908707,
-    "TypeScript": 11139544,
-    "Vue": 9086173,
-    "JavaScript": 947938,
-    "Shell": 316365,
+    "Go": 33457672,
+    "TypeScript": 11241308,
+    "Vue": 9118559,
+    "JavaScript": 953134,
+    "Shell": 316382,
     "Python": 150262,
-    "CSS": 93139,
-    "Makefile": 37146,
+    "CSS": 93146,
+    "Makefile": 37354,
     "HTML": 117841,
-    "Dockerfile": 12187,
+    "Dockerfile": 12184,
     "SCSS": 3207,
     "Handlebars": 2763,
     "PHP": 74997
