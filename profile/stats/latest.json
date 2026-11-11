@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-11 05:35 CST",
+  "generatedAt": "2026-11-12 06:23 CST",
   "org": "ternsms",
   "repos": [
-    "ternsms/sms",
     "ternsms/.github",
+    "ternsms/sms",
     "ternsms/webclone",
     "ternsms/legacy-smpp-proxy"
   ],
@@ -73,11 +73,11 @@
     }
   ],
   "languages": {
+    "JavaScript": 950999,
     "Go": 33970003,
     "TypeScript": 11298170,
     "Vue": 9262599,
     "Python": 801035,
-    "JavaScript": 950999,
     "Shell": 422636,
     "CSS": 97040,
     "Makefile": 37354,
