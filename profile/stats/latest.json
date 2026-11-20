@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20 06:51 CST",
+  "generatedAt": "2026-11-21 06:27 CST",
   "org": "ternsms",
   "repos": [
     "ternsms/sms-monitor",
@@ -9,11 +9,11 @@
     "ternsms/webclone",
     "ternsms/legacy-smpp-proxy"
   ],
-  "totalCommits": 3639,
+  "totalCommits": 3675,
   "contributors": [
     {
       "login": "backspace135",
-      "commits": 1240,
+      "commits": 1254,
       "repos": [
         ".github",
         "legacy-smpp-proxy",
@@ -21,17 +21,17 @@
         "sms-monitor",
         "webclone"
       ],
-      "lastDate": "2026-11-20"
+      "lastDate": "2026-11-21"
     },
     {
       "login": "Night-stars-1",
-      "commits": 884,
+      "commits": 890,
       "repos": [
         "legacy-smpp-proxy",
         "sms",
         "sms-monitor"
       ],
-      "lastDate": "2026-11-19"
+      "lastDate": "2026-11-21"
     },
     {
       "login": "xiaoxiongxiong",
@@ -53,12 +53,12 @@
     },
     {
       "login": "yuda-bai",
-      "commits": 100,
+      "commits": 109,
       "repos": [
         "sms",
         "sms-monitor"
       ],
-      "lastDate": "2026-11-20"
+      "lastDate": "2026-11-21"
     },
     {
       "login": "ganxieyou",
@@ -71,12 +71,12 @@
     },
     {
       "login": "yun12370",
-      "commits": 61,
+      "commits": 65,
       "repos": [
         "sms",
         "sms-monitor"
       ],
-      "lastDate": "2026-11-19"
+      "lastDate": "2026-11-21"
     },
     {
       "login": "root",
@@ -88,32 +88,33 @@
       "lastDate": "2026-11-06"
     },
     {
+      "login": "fobole-openthedoor",
+      "commits": 5,
+      "repos": [
+        "dlr_app",
+        "sms",
+        "sms-monitor"
+      ],
+      "lastDate": "2026-11-21"
+    },
+    {
       "login": "chenqian2",
       "commits": 2,
       "repos": [
         ".github"
       ],
       "lastDate": "2026-08-21"
-    },
-    {
-      "login": "fobole-openthedoor",
-      "commits": 2,
-      "repos": [
-        "dlr_app",
-        "sms-monitor"
-      ],
-      "lastDate": "2026-10-23"
     }
   ],
   "languages": {
-    "TypeScript": 14223519,
-    "Go": 37067263,
-    "CSS": 242137,
-    "Python": 822030,
+    "TypeScript": 14384988,
+    "Go": 37381432,
+    "CSS": 249119,
+    "Python": 822078,
     "HTML": 119797,
     "Makefile": 37900,
-    "JavaScript": 965881,
-    "Vue": 8710747,
+    "JavaScript": 967295,
+    "Vue": 8841964,
     "Shell": 422530,
     "Dockerfile": 12505,
     "SCSS": 3207,
