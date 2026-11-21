@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21 06:27 CST",
+  "generatedAt": "2026-11-22 05:22 CST",
   "org": "ternsms",
   "repos": [
     "ternsms/sms-monitor",
@@ -9,11 +9,11 @@
     "ternsms/webclone",
     "ternsms/legacy-smpp-proxy"
   ],
-  "totalCommits": 3675,
+  "totalCommits": 3718,
   "contributors": [
     {
       "login": "backspace135",
-      "commits": 1254,
+      "commits": 1266,
       "repos": [
         ".github",
         "legacy-smpp-proxy",
@@ -21,11 +21,11 @@
         "sms-monitor",
         "webclone"
       ],
-      "lastDate": "2026-11-21"
+      "lastDate": "2026-11-22"
     },
     {
       "login": "Night-stars-1",
-      "commits": 890,
+      "commits": 894,
       "repos": [
         "legacy-smpp-proxy",
         "sms",
@@ -53,7 +53,7 @@
     },
     {
       "login": "yuda-bai",
-      "commits": 109,
+      "commits": 115,
       "repos": [
         "sms",
         "sms-monitor"
@@ -71,12 +71,22 @@
     },
     {
       "login": "yun12370",
-      "commits": 65,
+      "commits": 67,
       "repos": [
         "sms",
         "sms-monitor"
       ],
       "lastDate": "2026-11-21"
+    },
+    {
+      "login": "fobole-openthedoor",
+      "commits": 24,
+      "repos": [
+        "dlr_app",
+        "sms",
+        "sms-monitor"
+      ],
+      "lastDate": "2026-11-22"
     },
     {
       "login": "root",
@@ -88,16 +98,6 @@
       "lastDate": "2026-11-06"
     },
     {
-      "login": "fobole-openthedoor",
-      "commits": 5,
-      "repos": [
-        "dlr_app",
-        "sms",
-        "sms-monitor"
-      ],
-      "lastDate": "2026-11-21"
-    },
-    {
       "login": "chenqian2",
       "commits": 2,
       "repos": [
@@ -107,17 +107,19 @@
     }
   ],
   "languages": {
-    "TypeScript": 14384988,
-    "Go": 37381432,
-    "CSS": 249119,
+    "TypeScript": 15362118,
+    "Go": 38218684,
+    "CSS": 263223,
     "Python": 822078,
-    "HTML": 119797,
-    "Makefile": 37900,
-    "JavaScript": 967295,
-    "Vue": 8841964,
-    "Shell": 422530,
-    "Dockerfile": 12505,
+    "HTML": 117712,
+    "Makefile": 38847,
+    "JavaScript": 1139429,
+    "Vue": 9215060,
+    "Shell": 443817,
+    "Solidity": 13685,
+    "Dockerfile": 13304,
     "SCSS": 3207,
+    "HCL": 1957,
     "Handlebars": 2763,
     "PHP": 74997
   }
