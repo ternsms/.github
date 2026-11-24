@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23 05:25 CST",
+  "generatedAt": "2026-11-24 10:42 CST",
   "org": "ternsms",
   "repos": [
     "ternsms/sms-monitor",
@@ -9,11 +9,11 @@
     "ternsms/webclone",
     "ternsms/legacy-smpp-proxy"
   ],
-  "totalCommits": 3760,
+  "totalCommits": 3799,
   "contributors": [
     {
       "login": "backspace135",
-      "commits": 1278,
+      "commits": 1290,
       "repos": [
         ".github",
         "legacy-smpp-proxy",
@@ -21,17 +21,17 @@
         "sms-monitor",
         "webclone"
       ],
-      "lastDate": "2026-11-23"
+      "lastDate": "2026-11-24"
     },
     {
       "login": "Night-stars-1",
-      "commits": 900,
+      "commits": 909,
       "repos": [
         "legacy-smpp-proxy",
         "sms",
         "sms-monitor"
       ],
-      "lastDate": "2026-11-23"
+      "lastDate": "2026-11-24"
     },
     {
       "login": "xiaoxiongxiong",
@@ -53,12 +53,12 @@
     },
     {
       "login": "yuda-bai",
-      "commits": 119,
+      "commits": 126,
       "repos": [
         "sms",
         "sms-monitor"
       ],
-      "lastDate": "2026-11-23"
+      "lastDate": "2026-11-24"
     },
     {
       "login": "ganxieyou",
@@ -80,13 +80,13 @@
     },
     {
       "login": "fobole-openthedoor",
-      "commits": 43,
+      "commits": 54,
       "repos": [
         "dlr_app",
         "sms",
         "sms-monitor"
       ],
-      "lastDate": "2026-11-23"
+      "lastDate": "2026-11-24"
     },
     {
       "login": "root",
@@ -107,17 +107,17 @@
     }
   ],
   "languages": {
-    "TypeScript": 15899446,
-    "Go": 39569321,
-    "CSS": 272249,
-    "Python": 822234,
+    "TypeScript": 16809487,
+    "Go": 41193525,
+    "CSS": 288092,
+    "Python": 840631,
     "HTML": 113688,
-    "Makefile": 38922,
-    "JavaScript": 1142771,
-    "Vue": 9708129,
-    "Shell": 455202,
+    "Makefile": 38928,
+    "JavaScript": 1260811,
+    "Vue": 10207869,
+    "Shell": 457947,
     "Solidity": 13685,
-    "Dockerfile": 14498,
+    "Dockerfile": 15617,
     "SCSS": 3207,
     "HCL": 2037,
     "Handlebars": 2763,
