@@ -1,7 +1,9 @@
 {
-  "generatedAt": "2026-11-27 08:12 CST",
+  "generatedAt": "2026-11-28 07:51 CST",
   "org": "ternsms",
   "repos": [
+    "ternsms/baoliao-orcabot",
+    "ternsms/baoliao",
     "ternsms/sms-monitor",
     "ternsms/dlr_app",
     "ternsms/.github",
@@ -9,24 +11,26 @@
     "ternsms/webclone",
     "ternsms/legacy-smpp-proxy"
   ],
-  "totalCommits": 3893,
+  "totalCommits": 3932,
   "contributors": [
     {
       "login": "backspace135",
-      "commits": 1318,
+      "commits": 1328,
       "repos": [
         ".github",
+        "baoliao-orcabot",
         "legacy-smpp-proxy",
         "sms",
         "sms-monitor",
         "webclone"
       ],
-      "lastDate": "2026-11-27"
+      "lastDate": "2026-11-28"
     },
     {
       "login": "Night-stars-1",
-      "commits": 931,
+      "commits": 947,
       "repos": [
+        "baoliao",
         "legacy-smpp-proxy",
         "sms",
         "sms-monitor"
@@ -53,16 +57,17 @@
     },
     {
       "login": "yuda-bai",
-      "commits": 139,
+      "commits": 146,
       "repos": [
+        "baoliao",
         "sms",
         "sms-monitor"
       ],
-      "lastDate": "2026-11-27"
+      "lastDate": "2026-11-28"
     },
     {
       "login": "fobole-openthedoor",
-      "commits": 83,
+      "commits": 89,
       "repos": [
         "dlr_app",
         "sms",
@@ -107,17 +112,17 @@
     }
   ],
   "languages": {
-    "TypeScript": 17701934,
-    "Go": 43025851,
-    "CSS": 293286,
-    "Python": 849126,
-    "HTML": 113688,
-    "Makefile": 39376,
-    "JavaScript": 1347047,
-    "Vue": 10606245,
+    "Python": 963124,
+    "Go": 44037284,
+    "TypeScript": 18187264,
+    "CSS": 341045,
+    "Dockerfile": 17315,
+    "HTML": 114671,
+    "Makefile": 39937,
+    "JavaScript": 1386281,
+    "Vue": 10731379,
     "Shell": 466759,
     "Solidity": 13685,
-    "Dockerfile": 15690,
     "SCSS": 3207,
     "HCL": 2037,
     "Handlebars": 2763,
